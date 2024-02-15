@@ -38,4 +38,9 @@
 <p>No books found.</p>
 {% endif %}
 
+<!-- Button to add a new book -->
+<div style="margin-top: 20px;">
+    <a href="{% url 'library_app:add_book' %}" class="btn btn-primary">Add a Book</a>
+</div>
+
 {% endblock %}

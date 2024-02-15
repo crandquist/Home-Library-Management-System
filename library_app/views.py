@@ -13,7 +13,7 @@ def add_book(request):
             book.owner = request.user  # Assign the book directly to the logged-in user
             book.save()
             messages.success(request, "Book added successfully.")
-            return redirect('user_books')  # Redirect to the user's book list
+            return redirect('library_app:user_books')  # Redirect to the user's book list
     else:
         form = BookForm()
     return render(request, 'library_app/add_book.html', {'form': form})
