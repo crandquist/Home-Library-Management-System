@@ -1,10 +1,10 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from django.views.generic import DetailView
 from .forms import LibraryForm, BookForm
-from .models import Library
+from .models import Library, Book
 
 @login_required
 def create_library(request):
@@ -40,3 +40,22 @@ class LibraryDetailView(DetailView):
     template_name = 'library_app/library_detail.html'
     context_object_name = 'library'
     pk_url_kwarg = 'library_id'
+
+def edit_book(request, book_id):
+    book = get_object_or_404(Book, id=book_id)
+    if request.method == 'POST':
+        form = BookForm(request.POST, instance=book)
+        if form.is_valid():
+            form.save()
+            return redirect('library_detail', library_id=book.library.id)
+    else:
+        form = BookForm(instance=book)
+    return render(request, 'library_app/edit_book.html', {'form': form})
+
+def delete_book(request, book_id):
+    book = get_object_or_404(Book, id=book_id)
+    if request.method == 'POST':
+        library_id = book.library.id
+        book.delete()
+        return redirect('library_detail', library_id=library_id)
+    return render(request, 'library_app/confirm_delete.html', {'book': book})

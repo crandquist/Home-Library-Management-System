@@ -1,0 +1,14 @@
+<!-- edit_book.html -->
+{% extends '_base.html' %}
+
+{% block content %}
+<h2>Edit Book</h2>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save changes</button>
+</form>
+
+<a href="{% url 'library_detail' library_id=book.library.id %}">Back to Library</a>
+{% endblock %}

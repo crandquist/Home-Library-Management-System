@@ -1,0 +1,32 @@
+{% extends '_base.html' %}
+
+{% block content %}
+<h2>Reading Logs</h2>
+<a href="{% url 'reading_log_add' %}" class="btn btn-primary mb-3">Add New Log</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Book Title</th>
+            <th>Author</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Notes</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for log in reading_logs %}
+        <tr>
+            <td>{{ log.book_title }}</td>
+            <td>{{ log.author }}</td>
+            <td>{{ log.start_date }}</td>
+            <td>{{ log.end_date }}</td>
+            <td>{{ log.notes }}</td>
+            <td>
+                <a href="{% url 'reading_log_edit' log.pk %}" class="btn btn-sm btn-secondary">Edit</a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

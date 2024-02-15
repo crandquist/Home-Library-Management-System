@@ -7,6 +7,7 @@ urlpatterns = [
     path("accounts/", include("allauth.urls")),
     path("", include("pages.urls")),
     path("library/", include("library_app.urls")),
+    path("reading-log/", include("reading_log.urls")),
 ]
 
 if settings.DEBUG:
