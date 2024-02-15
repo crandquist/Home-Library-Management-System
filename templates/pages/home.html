@@ -1,29 +1,18 @@
-{% extends '_base.html' %} <!-- Extend the base layout -->
-
-{% block title %}Home - Home Library Management WebApp{% endblock %}
+{% extends '_base.html' %}
 
 {% block content %}
-<div class="homepage">
-    <section class="hero">
-        <h1>Welcome to Your Digital Home Library</h1>
-        <p>Manage, track, and explore your book collection with ease.</p>
-    </section>
-
-    <section class="features">
-        <h2>Features That Empower Your Reading</h2>
-        <div class="feature-list">
-            <div class="feature">
-                <h3>Catalog Your Books</h3>
-                <p>Easily add and organize your books with comprehensive cataloging options.</p>
-            </div>
+<div class="container text-center mt-5">
+    <h1>Welcome to Your Personal Library and Reading Log!</h1>
+    <p class="lead">Keep track of your books and reading progress easily.</p>
+    <hr class="my-4">
+    <p>Explore your library, add new books, and log your reading experiences.</p>
+    <div class="row justify-content-center mt-4">
+        <div class="col-12 col-md-4 mb-2">
+            <a class="btn btn-primary btn-lg" href="{% url 'library_app:user_books' %}" role="button">View My Library</a>
         </div>
-    </section>
-
-    <section class="call-to-action">
-        <h2>Ready to Transform Your Home Library?</h2>
-        <p>Join our community of book enthusiasts today.</p>
-        <!-- Assuming there's a sign-up view accessible through the allauth package -->
-        <a href="{% url 'account_signup' %}" class="btn btn-primary">Sign Up Now</a>
-    </section>
+        <div class="col-12 col-md-4 mb-2">
+            <a class="btn btn-secondary btn-lg" href="{% url 'reading_log:user_reading_log' %}" role="button">View My Reading Log</a>
+        </div>
+    </div>
 </div>
 {% endblock %}

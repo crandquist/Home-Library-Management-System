@@ -1,5 +1,56 @@
-/* Sticky footer styles
--------------------------------------------------- */
+/* General Styles */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin-bottom: 60px; /* Margin bottom by footer height */
+  background: #f9f9f9; /* Light background to ease eye strain */
+  color: #333; /* Dark grey text for better readability */
+}
+
+.container {
+  max-width: 960px;
+  background: #fff; /* White background for the content area */
+  padding: 20px;
+  border-radius: 5px; /* Slight rounding of corners */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Soft shadow for depth */
+  margin-top: 20px;
+}
+
+/* Table Styles */
+table {
+  width: 100%;
+  border-collapse: collapse; /* Collapse borders to avoid double lines */
+  margin-top: 20px;
+}
+
+th, td {
+  padding: 10px;
+  border: 1px solid #ccc; /* Light grey border */
+  text-align: left;
+}
+
+th {
+  background-color: #007bff; /* Primary color header */
+  color: #ffffff; /* White text for header */
+  font-weight: normal;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2; /* Zebra striping for rows */
+}
+
+/* Sticky Footer Styles */
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px; /* Set the fixed height of the footer here */
+  line-height: 60px; /* Vertically center the text there */
+  background-color: #007bff; /* Footer background color */
+  color: #ffffff; /* Footer text color */
+  text-align: center;
+}
+
+/* Responsive font size */
 html {
   position: relative;
   min-height: 100%;
@@ -11,23 +62,18 @@ html {
   }
 }
 
-body {
-  margin-bottom: 60px; /* Margin bottom by footer height */
-}
-
-.container {
-  max-width: 960px;
-}
-
+/* Enhancements */
 .pricing-header {
   max-width: 700px;
+  text-align: center; /* Center pricing header text */
+  margin-bottom: 40px; /* Spacing below the pricing header */
 }
 
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 60px; /* Set the fixed height of the footer here */
-  line-height: 60px; /* Vertically center the text there */
-  background-color: #f5f5f5;
+/* Utility Classes */
+.text-center {
+  text-align: center;
+}
+
+.mb-4 {
+  margin-bottom: 1.5rem; /* Standard bottom margin */
 }

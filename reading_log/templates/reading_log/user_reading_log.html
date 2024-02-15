@@ -2,11 +2,35 @@
 
 {% block content %}
 <h2>My Reading Log</h2>
-<ul>
-    {% for log in logs %}
-    <li>{{ log.date_read }}: {{ log.book.title }} - Notes: {{ log.notes }}</li>
-    {% empty %}
-    <li>No entries yet.</li>
-    {% endfor %}
-</ul>
+
+{% if logs %}
+<table border="1" style="width:100%; border-collapse: collapse;">
+    <thead>
+        <tr>
+            <th>Date Read</th>
+            <th>Book Title</th>
+            <th>Author</th> <!-- Added Author column -->
+            <th>Notes</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for log in logs %}
+        <tr>
+            <td>{{ log.date_read|date:"M d, Y" }}</td>
+            <td>{{ log.book.title }}</td>
+            <td>{{ log.book.author }}</td> <!-- Displaying the author -->
+            <td>{{ log.notes }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>No entries yet.</p>
+{% endif %}
+
+<!-- Button to add a new reading log entry -->
+<div style="margin-top: 20px;">
+    <a href="{% url 'reading_log:reading_log_add' %}" class="btn btn-primary">Add a Reading Log</a>
+</div>
+
 {% endblock %}

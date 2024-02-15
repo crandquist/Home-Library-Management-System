@@ -4,6 +4,8 @@
 
 <head>
   <meta charset="utf-8">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/v4-shims.min.css">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
   <title>{% block title %}DjangoX{% endblock title %}</title>
@@ -68,11 +70,40 @@
     {% endblock content %}
   </div>
 
-  <footer class="footer">
-    <div class="container">
-      <span class="text-muted">Footer...</span>
+  <footer class="footer bg-dark text-light mt-5">
+    <div class="container py-5">
+      <div class="row">
+        <div class="col-md-4">
+          <h5>About Us</h5>
+          <p class="text-muted">Your Personal Library and Reading Log is the ultimate destination for book lovers to keep track of their reading and discover new favorites.</p>
+        </div>
+        <div class="col-md-4">
+          <h5>Quick Links</h5>
+          <ul class="list-unstyled text-muted">
+            <li><a href="{% url 'home' %}" class="text-light">Home</a></li>
+            <li><a href="{% url 'about' %}" class="text-light">About</a></li>
+            <li><a href="{% url 'library_app:user_books' %}" class="text-light">My Books</a></li>
+            <li><a href="{% url 'reading_log:user_reading_log' %}" class="text-light">Reading Log</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h5>Contact Us</h5>
+          <p class="text-muted">Email: contact@yourlibrary.com</p>
+          <p class="text-muted">Phone: +123 456 7890</p>
+          <div class="social-icons">
+            <a href="#" class="text-light mr-2"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="text-light mr-2"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="text-light mr-2"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="text-light"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center bg-light text-dark-50 py-3">
+      © 2024 Your Personal Library and Reading Log. All rights reserved.
     </div>
   </footer>
+  
 
   {% block javascript %}
   <!-- Bootstrap JavaScript -->
