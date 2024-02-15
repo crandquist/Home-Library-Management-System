@@ -6,8 +6,8 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("accounts/", include("allauth.urls")),
     path("", include("pages.urls")),
-    path("library/", include("library_app.urls")),
-    path("reading-log/", include("reading_log.urls")),
+    path('library/', include(('library_app.urls', 'library_app'), namespace='library_app')),
+    path('reading-log/', include(('reading_log.urls', 'reading_log'), namespace='reading_log')),
 ]
 
 if settings.DEBUG:

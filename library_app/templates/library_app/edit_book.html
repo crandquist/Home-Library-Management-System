@@ -1,5 +1,4 @@
-<!-- edit_book.html -->
-{% extends '_base.html' %}
+{% extends '_base.html' %}  <!-- Update this path if your base template is located elsewhere -->
 
 {% block content %}
 <h2>Edit Book</h2>
@@ -7,8 +6,9 @@
 <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Save changes</button>
+    <button type="submit" class="btn btn-primary">Save changes</button>
 </form>
 
-<a href="{% url 'library_detail' library_id=book.library.id %}">Back to Library</a>
+<!-- Updated back link to go to the user's books list -->
+<a href="{% url 'user_books' %}" class="btn btn-secondary">Back to My Books</a>
 {% endblock %}

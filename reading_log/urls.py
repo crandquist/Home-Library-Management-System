@@ -1,8 +1,8 @@
 from django.urls import path
-from .views import ReadingLogListView, ReadingLogCreateView, ReadingLogUpdateView
+from . import views
 
 urlpatterns = [
-    path('', ReadingLogListView.as_view(), name='reading_log_list'),
-    path('add/', ReadingLogCreateView.as_view(), name='reading_log_add'),
-    path('edit/<int:pk>/', ReadingLogUpdateView.as_view(), name='reading_log_edit'),
+    path('user-reading-log/', views.user_reading_log, name='user_reading_log'),
+    path('add/', views.ReadingLogCreateView.as_view(), name='reading_log_add'),
+    path('edit/<int:pk>/', views.ReadingLogUpdateView.as_view(), name='reading_log_edit'),
 ]

@@ -1,0 +1,19 @@
+{% extends '_base.html' %}
+
+{% block content %}
+<h2>My Reading Log</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Add Entry</button>
+</form>
+
+<h3>Log Entries</h3>
+<ul>
+    {% for log in logs %}
+    <li>{{ log.date_read }}: {{ log.book.title }} - Notes: {{ log.notes }}</li>
+    {% empty %}
+    <li>No entries yet.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

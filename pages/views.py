@@ -1,4 +1,5 @@
 from django.views.generic import TemplateView
+from reading_log.models import ReadingLog
 
 
 class HomePageView(TemplateView):

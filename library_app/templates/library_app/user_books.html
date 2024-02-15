@@ -1,0 +1,41 @@
+{% extends '_base.html' %}  <!-- Assuming you have a base template -->
+
+{% block content %}
+<h2>My Books</h2>
+
+{% if books %}
+<table border="1" style="width:100%; border-collapse: collapse;">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>ISBN</th>
+            <th>Published</th>
+            <th>Pages</th>
+            <th>Format</th>
+            <th>Read</th>
+            <th>Date Added</th>
+            <!-- Add more headers if needed -->
+        </tr>
+    </thead>
+    <tbody>
+        {% for book in books %}
+        <tr>
+            <td>{{ book.title }}</td>
+            <td>{{ book.author }}</td>
+            <td>{{ book.isbn }}</td>
+            <td>{{ book.published }}</td>
+            <td>{{ book.pages }}</td>
+            <td>{{ book.get_format_display }}</td>
+            <td>{{ book.read|yesno:"Yes,No" }}</td>
+            <td>{{ book.date_added|date:"Y-m-d H:i" }}</td>
+            <!-- Add more book details here as needed -->
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>No books found.</p>
+{% endif %}
+
+{% endblock %}
