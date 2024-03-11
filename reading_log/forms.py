@@ -1,9 +1,9 @@
 from django import forms
-from .models import ReadingLog
+from .models import ReadingLog, Book  # Import the Book model
 
 class ReadingLogForm(forms.ModelForm):
     date_read = forms.DateField(
-        input_formats=['%m-%d-%Y'],  # Accepts MM-DD-YYYY format
+        input_formats=['%m-%d-%Y'],
         widget=forms.DateInput(attrs={
             'class': 'form-control',
             'placeholder': 'MM-DD-YYYY',
@@ -13,7 +13,7 @@ class ReadingLogForm(forms.ModelForm):
         label="Date Read"
     )
     book = forms.ModelChoiceField(
-        queryset=ReadingLog.objects.none(),  # Update this queryset based on your requirements
+        queryset=Book.objects.none(),  # Initialize with none, will be set based on the user
         help_text="Select the book you read. If you can't find the book, make sure to add it to your book list first.",
         label="Book",
         widget=forms.Select(attrs={'class': 'form-control'}),
@@ -34,12 +34,7 @@ class ReadingLogForm(forms.ModelForm):
         fields = ['book', 'date_read', 'notes']
 
     def __init__(self, *args, **kwargs):
-        # If you need to dynamically set the queryset for books based on the user,
-        # you can do so here by popping 'user' from kwargs and filtering the queryset accordingly.
-        # Example:
-        # user = kwargs.pop('user', None)
-        # super(ReadingLogForm, self).__init__(*args, **kwargs)
-        # if user is not None:
-        #     self.fields['book'].queryset = Book.objects.filter(owner=user)
+        user = kwargs.pop('user', None)  # Get the user argument and remove it from kwargs
         super(ReadingLogForm, self).__init__(*args, **kwargs)
-        # Initialize your form fields' querysets or choices here if needed.
+        if user is not None:
+            self.fields['book'].queryset = Book.objects.filter(owner=user)  # Set the queryset for 'book' field

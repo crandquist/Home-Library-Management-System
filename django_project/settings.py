@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     "pages",
     "library_app",
     "reading_log",
+    "search",
 ]
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#middleware

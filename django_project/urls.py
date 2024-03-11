@@ -8,6 +8,7 @@ urlpatterns = [
     path("", include("pages.urls")),
     path('library/', include(('library_app.urls', 'library_app'), namespace='library_app')),
     path('reading-log/', include(('reading_log.urls', 'reading_log'), namespace='reading_log')),
+    path('search/', include(('search.urls', 'search'), namespace='search')),
 ]
 
 if settings.DEBUG:
