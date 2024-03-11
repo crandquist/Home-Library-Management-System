@@ -1,32 +1,28 @@
-import requests
+from pathlib import Path
 import json
 
+BASE_DIR = Path(__file__).resolve().parent.parent.parent  # Adjust the number of 'parent' calls based on your project structure
+
 def make_microservice_request(author, title):
-    # Replace the URL with the actual URL of your partner's microservice
-    microservice_url = "http://microservice-host:port/path"  
+    input_file_path = BASE_DIR / 'input.json'
+    output_file_path = BASE_DIR / 'output.json'
 
-    # Create the request payload
-    payload = {
-        "author": author,
-        "title": title
-    }
+    try:
+        with open(input_file_path, 'w') as input_file:
+            json.dump({"author": author, "title": title}, input_file, indent=4)
+        
+        # Read the results from output.json
+        with open(output_file_path, 'r') as output_file:
+            results = json.load(output_file)
 
-    # Make a POST request to the microservice
-    response = requests.post(microservice_url, json=payload)
+        # Clear both input and output files after displaying results
+        with open(input_file_path, 'w') as input_file, open(output_file_path, 'w') as output_file:
+            json.dump({}, input_file, indent=4)
+            json.dump({}, output_file, indent=4)
 
-    # Check if the request was successful (status code 200)
-    if response.status_code == 200:
-        return response.json()
-    else:
-        # Handle the case where the request was not successful
-        print(f"Error: {response.status_code}")
-        return None
+        if not results:
+            return {"error": "No results found."}
 
-# Example usage
-author = "J.K. Rowling"
-title = "Harry Potter"
-response_data = make_microservice_request(author, title)
-
-if response_data:
-    # Process the response data as needed
-    print(response_data)
+        return results
+    except FileNotFoundError:
+        return {"error": "File not found."}
